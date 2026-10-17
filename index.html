@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Rich Hustle</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial}body{background:#f6f7fb;color:#0f172a;padding-bottom:90px}
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid #eef2f7;display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+.logo{font-weight:900;font-size:18px;color:#0b2a5b;line-height:1;cursor:pointer}.logo small{font-size:11px;color:#64748b;display:block}
+.hero{margin:12px;background:linear-gradient(135deg,#0b2a5b 0%,#0d8f85 100%);border-radius:28px;padding:22px 20px;color:#fff}
+.hero h1{font-size:26px;line-height:.95;font-weight:900}.hero h1 span{color:#6ee7b7}
+.badge-mini{font-size:10px;font-weight:800;background:rgba(255,255,255,.15);padding:6px 10px;border-radius:20px;display:inline-block;margin:3px;border:1px solid rgba(255,255,255,.2)}
+.wa-hero{display:inline-block;background:#fff;color:#0b2a5b;padding:12px 18px;border-radius:14px;font-weight:900;font-size:13px;text-decoration:none;margin-top:12px}
+.search-wrap{margin:14px 12px 0;background:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.search-wrap input{border:none;outline:none;width:100%;font-size:14px;font-weight:600}
+.chips{margin:12px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chip{padding:9px 16px;border-radius:20px;font-size:12px;font-weight:800;border:1.5px solid #e2e8f0;background:#fff;color:#475569;white-space:nowrap;cursor:pointer;flex-shrink:0}
+.chip.active{background:#0b2a5b;color:#fff;border-color:#0b2a5b}
+.products{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);border:1px solid #f1f5f9}
+.img-wrap{position:relative;background:#f8fafc;height:170px}.img-wrap img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:10px;top:10px;font-size:9px;font-weight:900;padding:6px 10px;border-radius:20px;background:#fff;color:#0b2a5b;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.body{padding:12px}.title{font-size:13px;font-weight:800;min-height:32px}.specs{font-size:11px;color:#64748b;margin:4px 0}.price{font-size:16px;font-weight:900;color:#0b2a5b}.price small{font-size:11px;color:#00b050;display:block}
+.order{display:block;margin-top:10px;width:100%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-align:center;padding:12px;border-radius:14px;text-decoration:none;font-weight:900;font-size:12px}
+.footer-wa{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(90deg,#0b2a5b,#0d8f85);color:#fff;text-align:center;padding:16px;font-weight:900;text-decoration:none;z-index:40}
+#adminPanel{display:none;position:fixed;inset:0;background:#f6f7fb;z-index:100;overflow-y:auto;padding-bottom:100px}
+.admin-top{position:sticky;top:0;background:linear-gradient(135deg,#0b2a5b,#0d8f85);color:#fff;padding:20px;display:flex;justify-content:space-between;align-items:center}
+.glass{background:#fff;margin:14px;border-radius:20px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+input,textarea{width:100%;padding:13px;border:1.5px solid #e2e8f0;border-radius:14px;margin:6px 0 12px;background:#f8fafc;font-size:14px}
+.file-box{border:2px dashed #94a3b8;border-radius:16px;padding:18px;text-align:center;background:#f8fafc;display:block;cursor:pointer}
+#preview{width:100%;height:200px;object-fit:cover;border-radius:16px;display:none;margin-top:12px}
+.btn-main{background:#0b2a5b;color:#fff;border:none;padding:15px;border-radius:14px;font-weight:900;width:100%;font-size:14px;cursor:pointer}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:800;z-index:200;display:none}
+</style></head><body>
+<div id="toast" class="toast"></div>
+
+<div class="header">
+<div style="display:flex;gap:10px;align-items:center" id="logoBtn">
+<img src="logo.png" onerror="this.style.display='none'" style="width:42px;height:42px;border-radius:12px">
+<div class="logo">Rich Hustle<small>Laptop & Accessories • Accra</small></div>
+</div>
+<div style="font-size:10px;font-weight:800;color:#0b2a5b;background:#eef6ff;padding:6px 10px;border-radius:20px">GHANA #1</div>
+</div>
+
+<div class="hero">
+<h1>Premium Tech<br>for <span>Hustlers.</span></h1>
+<p style="font-size:12px;opacity:.9;margin:10px 0 0">Your trusted plug in Accra. Genuine laptops, iPhones & accessories.</p>
+<div style="margin:10px 0"><span class="badge-mini">✅ 500+ Sold</span><span class="badge-mini">🛡️ 6 Months Warranty</span><span class="badge-mini">🚚 Same Day</span></div>
+<a class="wa-hero" href="https://wa.me/233542861284">💬 WhatsApp: 0542861284</a>
+</div>
+
+<div class="search-wrap">🔍 <input id="search" placeholder="Search Dell, HP, iPhone..."></div>
+<div class="chips">
+<button class="chip active" data-brand="ALL">ALL</button>
+<button class="chip" data-brand="DELL">DELL</button>
+<button class="chip" data-brand="HP">HP</button>
+<button class="chip" data-brand="IPHONE">IPHONE</button>
+<button class="chip" data-brand="LENOVO">LENOVO</button>
+</div>
+
+<div id="products" class="products"></div>
+<a class="footer-wa" href="https://wa.me/233542861284">💬 Chat & Order: 0542861284</a>
+
+<div id="adminPanel">
+<div class="admin-top"><div><h2>✨ Studio Pro</h2><p style="font-size:11px;opacity:.8">Hidden Admin</p></div><button id="closeAdmin" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px 16px;border-radius:12px;font-weight:800">✕ Close</button></div>
+<div class="glass"><h3>🛒 Add Product</h3>
+<label>Name *</label><input id="name" placeholder="HP ELITEBOOK 840 G8">
+<label>Price GHS *</label><input id="price" type="number" placeholder="3200">
+<label>Badge</label><input id="tag" placeholder="10 UNITS">
+<label>Specs</label><textarea id="specs" rows="3" placeholder="Intel i7&#10;16GB RAM | 512GB SSD"></textarea>
+<label>Photo from Gallery</label><label class="file-box" for="fileInput"><div id="fileText" style="font-size:12px;font-weight:800">TAP TO CHOOSE GALLERY</div><input type="file" id="fileInput" accept="image/*" hidden></label><img id="preview"><label>Or Image URL</label><input id="image" placeholder="https://...jpg"><button class="btn-main" id="addBtn">✨ Add to Shop</button><div id="err" style="color:#ef4444;font-size:11px;margin-top:8px;display:none"></div></div>
+<div class="glass"><h3>📦 Your Products (<span id="count">0</span>)</h3><div id="adminList"></div></div>
+</div>
+
+<script>
+// --- DATA ---
+const defaults=[
+{name:"HP EliteBook 840 G8 - Bulk",price:"3200",tag:"10 UNITS",brand:"HP",image:"https://images.unsplash.com/photo-1588872657576-7efd1f1555ed?w=600",specs:"Intel i7 11th Gen\n16GB RAM | 512GB SSD"},
+{name:"DELL LATITUDE 5320",price:"4850",tag:"BOX PACK",brand:"DELL",image:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600",specs:"11th Gen i5\n16GB | 256GB SSD"},
+{name:"DELL 3190 x360",price:"2300",tag:"X360",brand:"DELL",image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",specs:"8GB | 128GB Touch"},
+{name:"HP 840 G4",price:"2950",tag:"BEST SELLER",brand:"HP",image:"https://images.unsplash.com/photo-1583223667854-e0e05b1ad2ad?w=600",specs:"Core i5 • 8GB | 256GB"},
+{name:"iPhone 11 64GB",price:"2100",tag:"IPHONE",brand:"IPHONE",image:"https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600",specs:"64GB • Battery 88%"},
+{name:"Headset Premium",price:"250",tag:"ACCESSORY",brand:"LENOVO",image:"https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",specs:"Original • Wireless"}
+];
+let products=JSON.parse(localStorage.getItem('rich_hustle_products')||'[]');
+let base64Img=""; let activeBrand="ALL";
+
+// --- HELPERS ---
+function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>{t.style.display='none'},2500)}
+function save(){localStorage.setItem('rich_hustle_products',JSON.stringify(products))}
+
+// --- RENDER ---
+function render(){
+let q=document.getElementById('search').value.toLowerCase();
+let filtered=[...products,...defaults].filter(p=>{
+let b=activeBrand==='ALL'||p.brand===activeBrand||p.name.toUpperCase().indexOf(activeBrand)>-1;
+let s=!q||p.name.toLowerCase().indexOf(q)>-1||p.specs.toLowerCase().indexOf(q)>-1;
+return b&&s;
+});
+let html='';
+for(let p of filtered){
+html+='<div class="card"><div class="img-wrap"><img src="'+p.image+'" onerror="this.src=\'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600\'"><div class="badge">'+p.tag+'</div></div><div class="body"><div class="title">'+p.name+'</div><div class="specs">'+p.specs.replace(/\n/g,' • ')+'</div><div class="price">GHS '+p.price+'<small>Free delivery</small></div><a class="order" href="https://wa.me/233542861284?text=Hello%20Rich%20Hustle%20I%20want%20'+encodeURIComponent(p.name)+'">💬 Order Now</a></div></div>';
+}
+document.getElementById('products').innerHTML=html||'<div style="grid-column:1/3;text-align:center;padding:30px;color:#94a3b8">No products found</div>';
+}
+function renderAdmin(){
+document.getElementById('count').innerText=products.length;
+let html='';
+for(let pr of products){
+html+='<div style="display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:10px;margin-bottom:8px;border:1px solid #eef2f7"><img src="'+pr.image+'" style="width:56px;height:56px;object-fit:cover;border-radius:10px"><div style="flex:1"><b style="font-size:12px">'+pr.name+'</b><br><span style="color:#00b050;font-weight:800">GHS '+pr.price+'</span></div><button class="delBtn" data-id="'+pr.id+'" style="background:#fee2e2;color:#ef4444;border:none;padding:8px 12px;border-radius:10px;font-weight:800">✕</button></div>';
+}
+document.getElementById('adminList').innerHTML=html||'<p style="text-align:center;color:#94a3b8;padding:12px;font-size:12px">No custom yet</p>';
+}
+
+// --- EVENTS - BUTTONS FIXED ---
+document.getElementById('search').addEventListener('input', render);
+document.querySelectorAll('.chip').forEach(btn=>{
+btn.addEventListener('click', function(){
+document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+this.classList.add('active');
+activeBrand=this.getAttribute('data-brand');
+render();
+});
+});
+let tapCount=0; let lastTap=0;
+document.getElementById('logoBtn').addEventListener('click', function(){
+let now=Date.now(); if(now-lastTap>2000) tapCount=0; tapCount++; lastTap=now;
+if(tapCount>=5){document.getElementById('adminPanel').style.display='block'; renderAdmin(); showToast('🔓 Admin unlocked'); tapCount=0;}
+});
+document.getElementById('closeAdmin').addEventListener('click', function(){document.getElementById('adminPanel').style.display='none'});
+document.getElementById('fileInput').addEventListener('change', function(e){
+let f=e.target.files[0]; if(!f) return; document.getElementById('fileText').innerText='✓ '+f.name;
+let r=new FileReader(); r.onload=function(ev){base64Img=ev.target.result; let p=document.getElementById('preview'); p.src=base64Img; p.style.display='block';}; r.readAsDataURL(f); showToast('📸 Photo loaded');
+});
+document.getElementById('addBtn').addEventListener('click', function(){
+let n=document.getElementById('name').value.trim(); let pr=document.getElementById('price').value.trim();
+let err=document.getElementById('err'); err.style.display='none';
+if(!n||!pr){err.innerText='⚠️ Name & Price required'; err.style.display='block'; showToast('Fill name & price'); return;}
+let img=document.getElementById('image').value.trim()||base64Img||'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600';
+let b=(n.match(/DELL|HP|IPHONE|LENOVO/i)||['NEW'])[0].toUpperCase();
+products.unshift({id:Date.now(),name:n,price:pr,tag:document.getElementById('tag').value||'NEW',specs:document.getElementById('specs').value||'Genuine Warranty',image:img,brand:b});
+save(); document.getElementById('name').value=''; document.getElementById('price').value=''; document.getElementById('tag').value=''; document.getElementById('specs').value=''; document.getElementById('image').value=''; document.getElementById('fileInput').value=''; document.getElementById('preview').style.display='none'; document.getElementById('fileText').innerText='TAP TO CHOOSE GALLERY'; base64Img='';
+render(); renderAdmin(); showToast('✅ Added!'); document.getElementById('adminPanel').style.display='none';
+});
+document.getElementById('adminList').addEventListener('click', function(e){
+if(e.target.classList.contains('delBtn')){let id=e.target.getAttribute('data-id'); products=products.filter(x=>x.id!=id); save(); render(); renderAdmin(); showToast('Deleted');}
+});
+if(window.location.search.indexOf('admin')>-1){document.getElementById('adminPanel').style.display='block'; renderAdmin();}
+render();
+</script></body></html>
