@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Rich Hustle | Premium Tech - Accra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',-apple-system,Arial}
+body{background:#f6f7fb;color:#0f172a;padding-bottom:90px}
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border-bottom:1px solid #eef2f7;display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+.logo{font-weight:900;font-size:18px;letter-spacing:-.6px;line-height:1;color:#0b2a5b;cursor:pointer}
+.logo small{font-weight:600;font-size:11px;color:#64748b;display:block;margin-top:2px;letter-spacing:.2px}
+.hero{margin:12px 12px 0;background:radial-gradient(120% 120% at 0% 0%,#0b2a5b 0%,#12367a 35%,#0d8f85 100%);border-radius:28px;padding:22px 20px;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);border-radius:50%}
+.hero h1{font-size:26px;line-height:.95;letter-spacing:-1px;font-weight:900}
+.hero h1 span{color:#6ee7b7}
+.hero p{font-size:12px;opacity:.9;margin:10px 0 14px;line-height:1.5}
+.badges{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.badge-mini{font-size:10px;font-weight:800;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:6px 10px;border-radius:20px;backdrop-filter:blur(8px)}
+.wa-hero{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0b2a5b;padding:12px 18px;border-radius:14px;font-weight:900;font-size:13px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.2);margin-top:6px}
+.search-wrap{margin:14px 12px 0;background:#fff;border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(15,23,42,.06);border:1px solid #eef2f7}
+.search-wrap input{border:none;outline:none;width:100%;font-size:14px;font-weight:600}
+.chips{margin:12px 12px 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.chip{white-space:nowrap;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:800;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer}
+.chip.active{background:#0b2a5b;color:#fff;border-color:#0b2a5b}
+.products{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(15,23,42,.06);border:1px solid #f1f5f9;transition:.25s;position:relative}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(15,23,42,.12)}
+.img-wrap{position:relative;background:#f8fafc;height:168px;overflow:hidden}
+.img-wrap img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.card:hover .img-wrap img{transform:scale(1.06)}
+.badge{position:absolute;left:10px;top:10px;font-size:9px;font-weight:900;padding:6px 10px;border-radius:20px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid #e2e8f0;color:#0b2a5b;letter-spacing:.4px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.stock{position:absolute;right:10px;top:10px;width:28px;height:28px;background:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:14px}
+.body{padding:12px}
+.title{font-size:13px;font-weight:800;line-height:1.2;letter-spacing:-.2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.specs{margin:6px 0;font-size:11px;color:#64748b;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price-row{display:flex;justify-content:space-between;align-items:end;margin-top:10px}
+.price{font-size:16px;font-weight:900;color:#0b2a5b;letter-spacing:-.4px}
+.price small{font-size:11px;font-weight:700;color:#00b050;display:block}
+.order{margin-top:10px;width:100%;background:linear-gradient(135deg,#0b2a5b,#1642a0);color:#fff;text-align:center;padding:11px;border-radius:14px;text-decoration:none;font-weight:900;font-size:12px;display:flex;justify-content:center;align-items:center;gap:6px;box-shadow:0 8px 20px rgba(11,42,91,.25)}
+.order.wa{background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 8px 20px rgba(37,211,102,.3)}
+.footer-wa{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(90deg,#0b2a5b 0%,#0d8f85 100%);color:#fff;text-align:center;padding:16px;font-weight:900;text-decoration:none;z-index:40;display:flex;justify-content:center;gap:8px;letter-spacing:.2px;box-shadow:0 -10px 30px rgba(11,42,91,.2)}
+.trust{margin:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.trust div{background:#fff;border-radius:14px;padding:10px;text-align:center;border:1px solid #eef2f7;font-size:10px;font-weight:800;color:#475569}
+.trust span{font-size:16px;display:block;margin-bottom:2px}
+#adminPanel{display:none;position:fixed;inset:0;background:#f6f7fb;z-index:100;overflow-y:auto;padding-bottom:100px}
+.admin-top{position:sticky;top:0;background:linear-gradient(135deg,#0b2a5b,#0d8f85);color:#fff;padding:20px;display:flex;justify-content:space-between;align-items:center;border-radius:0 0 24px 24px;box-shadow:0 12px 30px rgba(11,42,91,.25)}
+.glass{background:#fff;margin:14px;border-radius:20px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.06);border:1px solid #eef2f7}
+label{font-size:11px;font-weight:800;color:#0b2a5b;text-transform:uppercase;margin-top:8px;display:block}
+input,textarea{width:100%;padding:13px;border:1.8px solid #e2e8f0;border-radius:14px;margin:6px 0 12px;font-size:14px;background:#f8fafc;outline:none}
+input:focus,textarea:focus{border-color:#0b2a5b;background:#fff}
+.file-box{border:2px dashed #94a3b8;border-radius:16px;padding:18px;text-align:center;background:#f8fafc;display:block;cursor:pointer}
+#preview{width:100%;height:200px;object-fit:cover;border-radius:16px;display:none;margin-top:12px;border:3px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.btn-main{background:#0b2a5b;color:#fff;border:none;padding:15px;border-radius:14px;font-weight:900;width:100%;font-size:14px;cursor:pointer}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:800;z-index:200;display:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+</style></head><body>
+<div id="toast" class="toast"></div>
+
+<div class="header">
+  <div style="display:flex;gap:10px;align-items:center" onclick="secretTap()">
+    <img src="logo.png" onerror="this.style.display='none'" style="width:42px;height:42px;border-radius:12px;object-fit:cover;box-shadow:0 4px 12px rgba(0,0,0,.15)">
+    <div class="logo">Rich Hustle<small>Laptop & Accessories • Accra</small></div>
+  </div>
+  <div style="font-size:10px;font-weight:800;color:#0b2a5b;background:#eef6ff;padding:6px 10px;border-radius:20px">GHANA #1</div>
+</div>
+
+<div class="hero">
+<h1>Premium Tech<br>for <span>Hustlers.</span></h1>
+<p>Your trusted plug in Accra for genuine laptops, iPhones & accessories. Warranty + free delivery.</p>
+<div class="badges"><div class="badge-mini">✅ 500+ Sold</div><div class="badge-mini">🛡️ 6 Months Warranty</div><div class="badge-mini">🚚 Same Day</div></div>
+<a class="wa-hero" href="https://wa.me/233542861284">💬 WhatsApp: 0542861284</a>
+</div>
+
+<div class="search-wrap">🔍 <input id="search" placeholder="Search Dell, HP, iPhone..." oninput="render()"></div>
+<div class="chips" id="chips"></div>
+<div id="products" class="products"></div>
+
+<div class="trust">
+<div><span>🛡️</span>Warranty</div><div><span>✅</span>Original</div><div><span>🚚</span>Fast Delivery</div>
+</div>
+
+<a class="footer-wa" href="https://wa.me/233542861284"><span>💬</span> Chat & Order: 0542861284</a>
+
+<div id="adminPanel">
+<div class="admin-top"><div><h2 style="font-size:18px">✨ Studio Pro</h2><p style="font-size:11px;opacity:.8">Hidden Admin • Gallery Upload</p></div><button onclick="toggleAdmin()" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px 16px;border-radius:12px;font-weight:800">✕</button></div>
+<div class="glass"><h3 style="font-size:14px;margin-bottom:10px">🛒 Add Product</h3>
+<label>Name *</label><input id="name" placeholder="HP ELITEBOOK 840 G8 - 10 UNITS">
+<label>Price GHS *</label><input id="price" type="number" placeholder="3200">
+<label>Badge</label><input id="tag" placeholder="10 UNITS • BULK">
+<label>Specs</label><textarea id="specs" rows="3" placeholder="Intel i7 11th Gen&#10;16GB RAM | 512GB SSD&#10;Accra Stock"></textarea>
+<label>Photo from Gallery</label><label class="file-box" for="fileInput"><div style="font-size:28px">📸</div><div id="fileText" style="font-size:12px;font-weight:800;color:#0b2a5b">TAP TO CHOOSE FROM GALLERY</div><input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)" hidden></label><img id="preview"><label>Or Image URL</label><input id="image" placeholder="https://...jpg"><button class="btn-main" onclick="addProduct()">✨ Add to Shop</button><div id="err" style="color:#ef4444;font-size:11px;font-weight:700;margin-top:10px;display:none"></div></div>
+<div class="glass"><h3>📦 Your Products (<span id="count">0</span>)</h3><div id="adminList"></div></div>
+</div>
+
+<script>
+let tap=0;function secretTap(){tap++;if(tap>=5){toggleAdmin();tap=0;showToast('🔓 Admin unlocked')}setTimeout(()=>tap=0,2000)}
+if(location.search.includes('admin'))document.getElementById('adminPanel').style.display='block';
+function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}
+const defaults=[
+{name:"HP EliteBook 840 G8 - Bulk 10 Units",price:"3200",tag:"10 UNITS • BULK",brand:"HP",image:"https://images.unsplash.com/photo-1588872657576-7efd1f1555ed?w=600",specs:"Intel i7 11th Gen\n16GB RAM | 512GB SSD\nWarranty • Accra Stock"},
+{name:"DELL LATITUDE 5320 Touch",price:"4850",tag:"BOX PACK • FEATURED",brand:"DELL",image:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600",specs:"11th Gen i5-1135G7\n16GB | 256GB SSD\nTouchscreen • New"},
+{name:"DELL 3190 x360 Convertible",price:"2300",tag:"X360 • 8GB",brand:"DELL",image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",specs:"8GB RAM | 128GB SSD\nTouch x360\nStudent Favorite"},
+{name:"HP 840 G4 - Best Seller",price:"2950",tag:"BEST SELLER",brand:"HP",image:"https://images.unsplash.com/photo-1583223667854-e0e05b1ad2ad?w=600",specs:"Core i5 • 8GB | 256GB\nProBook • Warranty"},
+{name:"iPhone 11 64GB - Clean",price:"2100",tag:"IPHONE • 88%",brand:"IPHONE",image:"https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600",specs:"64GB • Battery 88%\nWarranty • Box"},
+{name:"Lenovo ThinkPad Charger",price:"250",tag:"ACCESSORY",brand:"LENOVO",image:"https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600",specs:"65W Type-C\nOriginal\nAccra"}
+];
+let products=JSON.parse(localStorage.getItem('rich_hustle_products')||'[]');
+let base64Img="";let activeBrand="ALL";
+const brands=["ALL","DELL","HP","IPHONE","LENOVO"];
+function previewImage(e){let f=e.target.files[0];if(!f)return;document.getElementById('fileText').innerText='✓ '+f.name;let r=new FileReader();r.onload=ev=>{base64Img=ev.target.result;let p=document.getElementById('preview');p.src=base64Img;p.style.display='block'};r.readAsDataURL(f);showToast('📸 Photo loaded')}
+function toggleAdmin(){let p=document.getElementById('adminPanel');p.style.display=p.style.display==='block'?'none':'block';renderAdmin()}
+function addProduct(){let n=document.getElementById('name').value.trim();let pr=document.getElementById('price').value.trim();let err=document.getElementById('err');err.style.display='none';if(!n||!pr){err.innerText='⚠️ Name & Price required';err.style.display='block';showToast('Fill name & price');return}let img=document.getElementById('image').value.trim()||base64Img||'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600';let b=(n.match(/DELL|HP|IPHONE|LENOVO/i)||['NEW'])[0].toUpperCase();let obj={id:Date.now(),name:n,price:pr,tag:document.getElementById('tag').value||'NEW',specs:document.getElementById('specs').value||'Genuine\nWarranty',image:img,brand:b};products.unshift(obj);localStorage.setItem('rich_hustle_products',JSON.stringify(products));['name','price','tag','specs','image','fileInput'].forEach(id=>{let el=document.getElementById(id);if(el)el.value=''});document.getElementById('preview').style.display='none';document.getElementById('fileText').innerText='TAP TO CHOOSE FROM GALLERY';base64Img='';render();renderAdmin();showToast('✅ Added');toggleAdmin()}
+function del(id){if(!confirm('Delete?'))return;products=products.filter(x=>x.id!=id);localStorage.setItem('rich_hustle_products',JSON.stringify(products));render();renderAdmin();showToast('Deleted')}
+function renderChips(){document.getElementById('chips').innerHTML=brands.map(b=>`<div class="chip ${activeBrand===b?'active':''}" onclick="activeBrand='${b}';renderChips();render()">${b}</div>`).join('')}
+function render(){let q=document.getElementById('search').value.toLowerCase();let all=[...products,...defaults].filter(p=>{let mBrand=activeBrand==='ALL'||p.brand===activeBrand||p.name.toUpperCase().includes(activeBrand);let mSearch=!q||p.name.toLowerCase().includes(q)||p.specs.toLowerCase().includes(q);return mBrand&&mSearch});document.getElementById('products').innerHTML=all.map(p=>`
+<div class="card">
+<div class="img-wrap">
+<img src="${p.image}" onerror="this.src='https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600'" loading="lazy">
+<div class="badge">${p.tag}</div><div class="stock">💚</div>
+</div>
+<div class="body">
+<div class="title">${p.name}</div>
+<div class="specs">${p.specs.replace(/\n/g,' • ')}</div>
+<div class="price-row"><div class="price">GHS ${p.price}<small>Free delivery</small></div></div>
+<a class="order wa" href="https://wa.me/233542861284?text=Hello%20Rich%20Hustle%20-%20I%20want%20${encodeURIComponent(p.name)}%20GHS%20${p.price}">💬 Order</a>
+</div>
+</div>`).join('')||`<div style="grid-column:1/3;text-align:center;padding:40px;color:#94a3b8">No products found</div>`}
+function renderAdmin(){document.getElementById('count').innerText=products.length;document.getElementById('adminList').innerHTML=products.map(pr=>`<div style="display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:10px;margin-bottom:8px;border:1px solid #eef2f7"><img src="${pr.image}" style="width:56px;height:56px;object-fit:cover;border-radius:10px"><div style="flex:1"><b style="font-size:12px">${pr.name}</b><br><span style="color:#00b050;font-weight:800">GHS ${pr.price}</span></div><button onclick="del(${pr.id})" style="background:#fee2e2;color:#ef4444;border:none;padding:8px 12px;border-radius:10px;font-weight:800">✕</button></div>`).join('')||'<p style="text-align:center;color:#94a3b8;font-size:12px;padding:12px">No custom yet</p>'}
+renderChips();render();
+</script></body></html>
